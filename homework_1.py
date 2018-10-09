@@ -9,11 +9,10 @@ backtracking algorithm to determine our step length. In addition, we need to eva
 [1.2, 1.2] and [-1.2, 1]. We also need to print the value of our step length at each iteration.
 
 Author: Nathan Thomas
-Red ID: 817283370
 
 Instructor: Dr. Peter Blomgren
 Course: Math693A Computational Optimization
-Date: September 21, 2018
+Date: September 21, 2018, 12:00PM
 '''
 
 
@@ -164,7 +163,7 @@ print("The steepest decent method, starting at " + str(x_0) + ", converges to: "
 ########################################################################################################################
 
 alpha_0 = 1  # initial step length
-x_0 = np.array([1.2, 1.2])  # initial point (starting location)
+x_0 = np.array([-1.2, 1])  # initial point (starting location)
 x = x_0
 newton_direction_steps = []
 newton_direction_points = []  # establish some lists to keep track of our steps, points, and values
