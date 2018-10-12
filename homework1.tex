@@ -1,0 +1,76 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[margin=1 in]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{color}
+\usepackage{subcaption}
+\usepackage{wrapfig}
+\newtheorem{lemma}{Lemma}
+\usepackage{datatool}
+\usepackage{siunitx}
+\usepackage{booktabs} % for nicer tables
+\usepackage{caption} % improve caption spacing (among other things)
+\usepackage{bm}
+\renewcommand*\dtldisplaystarttab{\toprule}
+\renewcommand*\dtldisplayendtab{\tabularnewline\bottomrule}
+\renewcommand*\dtldisplayafterhead{\midrule}
+
+\begin{document}
+\title{Homework 1}
+\author{Nathan Thomas}
+\markboth{Math 693A Homework 1}{}
+\date{September 21, 2018}
+\maketitle
+\section{Problem}
+$\text{NW}^{2}-3.1$: Program the steepest decent and newton algorithms to use the backtracking line search. Use them to minimize the Rosenbrock function
+
+\[
+f(\bar{x}) = 100(x_{2}-x_{1}^{2})^{2} + (1-x_{1})^{2}
+\]
+
+Set the initial step length $\alpha_{0}=1$ and report the step length used by each method at each iteration. First try the initial point $\bar{x}_{0}=[1.2,1.2]^{T}$ and then the more difficult starting point $\bar{x}_{0}=[-1.2,1]^{T}$.\\
+
+Suggested values: $alpha_{0}=1, \ \rho=\frac{1}{2}, \ c=10^{-4}$. Stop when $|f(\bar{x}_{k}|<10^{-8}$ or $||\nabla f(\bar{x}_{k}||<10^{-8}$S
+
+\section{Results}
+\subsection{Steepest Decent}
+The steepest decent direction converges regardless of the starting point.
+\subsubsection{Case 1, $\bar{x}_{0}=[1.2,1.2]^{T}$}
+\DTLloaddb
+[
+noheader,
+keys={x,y,theta},
+headers={
+	\shortstack{$\boldsymbol{\theta_{{2,i}}}$},
+	\shortstack{X},
+	\shortstack{Y}}
+]
+{steepest_decent_1}{steepest_decent_1.csv}
+\begin{table}[t]
+	\sisetup{
+		parse-numbers   = false,
+		table-number-alignment = left,
+		table-figures-integer = 4,
+		table-figures-decimal = 4,
+		input-decimal-markers = .
+	}
+	\renewcommand*\dtlrealalign{S}
+	\caption{Database file}
+	\centering
+	\DTLdisplaydb{steepest_decent_1}
+\end{table}
+\subsubsection{Case 1, $\bar{x}_{0}=[-1.2,1]^{T}$}
+
+\subsection{Newton Direction} 
+The Newton Direction only converged with the first starting point.
+\subsubsection{Case 1, $\bar{x}_{0}=[1.2,1.2]^{T}$}
+
+\subsubsection{Case 1, $\bar{x}_{0}=[-1.2,1]^{T}$}
+
+
+
+
+\end{document}

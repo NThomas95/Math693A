@@ -158,13 +158,20 @@ print(("\nThe number of steps for the steepest decent method, starting at " + st
       + str(np.size(steepest_decent_step_lengths))))
 print("The steepest decent method, starting at " + str(x_0) + ", converges to: " + str(x) + "\n")
 
+# This section saves a relevant list as a numpy array. Then it converts that numpy array to a csv file. Mostly for latex
+A = np.zeros(np.size(steepest_decent_step_lengths))
+for i in range(np.size(steepest_decent_step_lengths)):
+    A[i] = steepest_decent_step_lengths[i]
+
+np.savetxt("steepest_decent_1.csv", A)  # uncomment this line to save the output to a file
+
 
 ########################################################################################################################
 ##########################################     Newton Method     #######################################################
 ########################################################################################################################
 
 alpha_0 = 1  # initial step length
-x_0 = np.array([-1.2, 1])  # initial point (starting location)
+x_0 = np.array([1.2, 1.2])  # initial point (starting location)
 x = x_0
 newton_direction_step_lengths = []
 newton_direction_points = []  # establish some lists to keep track of our steps, points, and values
@@ -194,10 +201,15 @@ while np.linalg.norm(rosenbrock_function(x)) >= 10**-8 and np.linalg.norm(rosenb
     newton_direction_points.append(x)  # add the point on to our list of points
     newton_direction_values.append(rosenbrock_function(x))  # add the function value to our list of values
     count += 1
-    #print(x)  # testing
-    #print(alpha)  # testing
-    #print(rosenbrock_derivative(x))  # testing
+
 
 print(("\nThe number of steps for the newton direction method, starting at " + str(x_0) + ", was: "
       + str(np.size(newton_direction_step_lengths))))
 print("The newton direction method, starting at " + str(x_0) + ", converges to: " + str(x) + "\n")
+
+# This section saves a relevant list as a numpy array. Then it converts that numpy array to a csv file. Mostly for latex
+B = np.zeros(np.size(newton_direction_step_lengths))
+for i in range(np.size(newton_direction_step_lengths)):
+    B[i] = newton_direction_step_lengths[i]
+    
+np.savetxt("newton_direction_1.csv", B)  # uncomment this line to save the output to a file
