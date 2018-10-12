@@ -121,6 +121,7 @@ def backtracker(location, step_direction, step_length=1, function_ratio=10**-4, 
     return step_length
 
 
+print("Homework #1")
 ########################################################################################################################
 ##########################################    Steepest Decent Method    ################################################
 ########################################################################################################################
@@ -128,7 +129,7 @@ def backtracker(location, step_direction, step_length=1, function_ratio=10**-4, 
 alpha_0 = 1  # initial step length
 x_0 = np.array([1.2, 1.2])  # initial point (starting location)
 x = x_0
-steepest_decent_steps = []
+steepest_decent_step_lengths = []
 steepest_decent_points = []  # establish some lists to keep track of our steps, points, and values
 steepest_decent_values = []
 
@@ -148,13 +149,13 @@ while np.linalg.norm(rosenbrock_function(x)) >= 10**-8 and np.linalg.norm(rosenb
     p = -1*rosenbrock_derivative(x)  # this is the step direction
     alpha = backtracker(x, p, alpha_0)  # this finds our appropriate step length
     x = x + alpha*-1*rosenbrock_derivative(x)  # this adjusts our x point by moving a length alpha along the direction p
-    steepest_decent_steps.append(alpha)  # add the step length to our list
+    steepest_decent_step_lengths.append(alpha)  # add the step length to our list
     steepest_decent_points.append(x)  # add the new point to our list
     steepest_decent_values.append(rosenbrock_function(x))  # add the value of the function to our list
     count += 1
 
 print(("\nThe number of steps for the steepest decent method, starting at " + str(x_0) + ", was: "
-      + str(np.size(steepest_decent_steps))))
+      + str(np.size(steepest_decent_step_lengths))))
 print("The steepest decent method, starting at " + str(x_0) + ", converges to: " + str(x) + "\n")
 
 
@@ -165,7 +166,7 @@ print("The steepest decent method, starting at " + str(x_0) + ", converges to: "
 alpha_0 = 1  # initial step length
 x_0 = np.array([-1.2, 1])  # initial point (starting location)
 x = x_0
-newton_direction_steps = []
+newton_direction_step_lengths = []
 newton_direction_points = []  # establish some lists to keep track of our steps, points, and values
 newton_direction_values = []
 
@@ -189,7 +190,7 @@ while np.linalg.norm(rosenbrock_function(x)) >= 10**-8 and np.linalg.norm(rosenb
     p = direction_normalizer(p)  # this makes sure p has length 1
     alpha = backtracker(x, p, alpha_0)  # find an appropriate step length
     x = x + alpha*p  # move x a length alpha along the direction p
-    newton_direction_steps.append(alpha)  # add the step length to our list
+    newton_direction_step_lengths.append(alpha)  # add the step length to our list
     newton_direction_points.append(x)  # add the point on to our list of points
     newton_direction_values.append(rosenbrock_function(x))  # add the function value to our list of values
     count += 1
@@ -198,5 +199,5 @@ while np.linalg.norm(rosenbrock_function(x)) >= 10**-8 and np.linalg.norm(rosenb
     #print(rosenbrock_derivative(x))  # testing
 
 print(("\nThe number of steps for the newton direction method, starting at " + str(x_0) + ", was: "
-      + str(np.size(newton_direction_steps))))
+      + str(np.size(newton_direction_step_lengths))))
 print("The newton direction method, starting at " + str(x_0) + ", converges to: " + str(x) + "\n")
